@@ -1,58 +1,46 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>MaxMemTest</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
         <div>This site will crash after pushing Start. <br>Please open the developer tool on your browser before pushing Start.</div>
         <input id="start" type="button" value="Start" />
         <div id="msg"></div>
-        
-        <script>
-            const maxIdx = 100000
-        
-            var memTest = {
-                init: function() {
-                    this.bindEvents();
-                },
-                bindEvents: function() {
-                    document.getElementById('start').addEventListener('click', this.startTest);
-                },
-                startTest: function() {
-                    var test = new Test();
-                    for(var i=1; i<maxIdx; i++) {
-                        test.addTest(i);
-                    }
-                }
-            };
-            memTest.init();
-
-            class Test {
-                constructor() {
-                    this.tests = new Array();
-                    this.msg = document.getElementById('msg')
-                }
-                addTest(l) {
-                    const arr = new Array(l);
-                    arr.fill("a");
-                    this.tests[l-1] = arr;
-                    const txt = `loop test: ${l} / ${maxIdx}`;
-                    console.log(txt);
-                    this.msg.innerHTML = txt;
+    </body>
+    <script>
+        const maxIdx = 100000
+    
+        var memTest = {
+            init: function() {
+                this.bindEvents();
+            },
+            bindEvents: function() {
+                document.getElementById('start').addEventListener('click', this.startTest);
+            },
+            startTest: function() {
+                var test = new Test();
+                for(var i=1; i<maxIdx; i++) {
+                    test.addTest(i);
                 }
             }
+        };
+        memTest.init();
 
-        </script>
-    </body>
+        class Test {
+            constructor() {
+                this.tests = new Array();
+                this.msg = document.getElementById('msg')
+            }
+            addTest(l) {
+                const arr = new Array(l);
+                arr.fill("a");
+                this.tests[l-1] = arr;
+                const txt = `loop test: ${l} / ${maxIdx}`;
+                console.log(txt);
+                this.msg.innerHTML = txt;
+            }
+        }
+    </script>
 </html>
